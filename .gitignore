@@ -1,1 +1,4 @@
 SETTINGS.py
+**/__pycache__
+**/**.pyc
+**.pyc
