@@ -1,8 +1,6 @@
 import requests
 import re
 
-default_stop_id = 1788
-default_route = 38
 
 def get_time_to_arrival(stop_id, route):
 

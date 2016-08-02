@@ -1,9 +1,11 @@
 from twilio.rest import TwilioRestClient
+import logging
+
 from SETTINGS import settings
 
 class Texter():
 
-	def send_text(self, body):
+	def send_text(self, phone_number, body):
 
 		self.ACCOUNT_SID = settings['ACCOUNT_SID']
 		self.AUTH_TOKEN = settings['AUTH_TOKEN']
@@ -12,9 +14,12 @@ class Texter():
 
 		try:
 			self.client.messages.create(
-			    to = '9163209285',
+			    to = phone_number,
 			    from_ = '9167108744',
 			    body = body,
 			)
+			logging.info("Message sent to phone number: " + phone_number)
 		except TwilioRestException as e:
-			print(e)
+			logging.error("Message could not be sent to phone number " + phone_number)
+			logging.error(e)
+	
