@@ -28,7 +28,7 @@ class DBConnection:
 	def get_texts_to_send(self, hour, minute):
 		query = """select route_number, stop_id, phone_number, hour, minute, max_minutes
 				   from scheduled_texts
-				   where hour = %s and minute = %s"""
+				   where hour = %s and minute = %s and is_validated = 1"""
 				   
 
 		parameters = (hour, minute)

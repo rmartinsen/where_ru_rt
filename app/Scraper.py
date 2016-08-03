@@ -18,7 +18,6 @@ def get_time_to_arrival(stop_id, route):
 
 def get_html(stop_id, route):
 	url = "http://m.sacrt.com/bdetails.aspx?stpid=%s&route=%s" % (stop_id, route)
-	print(url)
 	html = requests.get(url).text
 	return html
 

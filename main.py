@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 from datetime import datetime
 import logging
+from twilio import TwilioRestException
 
-from TextSender import Texter
-from Scraper import get_time_to_arrival
-from DB import DBConnection
+from app.TextSender import Texter
+from app.Scraper import get_time_to_arrival
+from app.DB import DBConnection
 
 
 
@@ -25,17 +26,24 @@ if __name__ == '__main__':
 
 	texts_to_send = conn.get_texts_to_send(now_hour, now_minute)
 
+	msg_sent_count = 0
+	msg_failed_count = 0
+
 	for text_msg in texts_to_send:
 		arrival_time = get_time_to_arrival(text_msg['stop_id'], text_msg['route_number']) 
 
 		phone_number = text_msg['phone_number']
 
-		texter = Texter()
-		texter.send_text(phone_number, "Bus on route " + text_msg['route_number'] + 
-			" will arrive at bus stop " + str(text_msg['stop_id']) +
-			" in " + str(arrival_time) + " minutes")
+		try:
+			texter = Texter()
+			texter.send_text(phone_number, "Bus on route " + text_msg['route_number'] + 
+				" will arrive at bus stop " + str(text_msg['stop_id']) +
+				" in " + str(arrival_time) + " minutes")
+			msg_sent_count += 1
+		except TwilioRestException(e):
+			msg_failed_count += 1
 
 	logging.info("Ending process: Hour = " + str(now_hour) + ", minute = " + str(now_minute))
-
+	logging.info(str(msg_sent_count) + " messages sent. " + str(msg_failed_count) + " messages failed to send.")
 
 
