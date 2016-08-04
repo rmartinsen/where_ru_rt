@@ -3,4 +3,5 @@ SETTINGS.py
 **/**.pyc
 **.pyc
 **.log
+**/.DS_Store
 LICENSE
