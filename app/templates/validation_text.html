@@ -1,0 +1,24 @@
+<!doctype html>
+<body>
+A confirmation text has been sent to {{ phone_number }}. Enter the confirmation code below to start receiving texts.
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+  	<br><br>
+  	{% for message in messages %}
+     {{ message }}
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<form action=/CheckValidationCode method="post">
+
+<br>
+<input type="hidden" name="scheduled_text_id" value="{{ scheduled_text_id }}">
+<input type="hidden" name="phone_number" value="{{ phone_number }}">
+
+<label for="validation_code">Confirmation Code</label>
+<input type="text" id="validation_code" name="validation_code">
+<br>
+<input type="submit" value="Submit Confirmation">
+</form>

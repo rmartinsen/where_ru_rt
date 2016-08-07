@@ -1,4 +1,5 @@
 from twilio.rest import TwilioRestClient
+from twilio import TwilioRestException
 import logging
 
 from SETTINGS import settings
@@ -20,4 +21,7 @@ class Texter():
 			)
 			logging.info("Message sent to phone number: " + phone_number)
 		except TwilioRestException as e:
-			print(e)
+			logging.error("Message could not be sent to phone number " + phone_number)
+			logging.error(e)
+			raise
+	
