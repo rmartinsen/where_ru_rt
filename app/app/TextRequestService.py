@@ -55,8 +55,11 @@ def create_scheduled_text(text_data):
 		st.phone_number = text_data["phone_number"]
 		st.route_number = text_data["route_number"]
 		st.stop_id =	  text_data["stop_id"]
-		st.hour =		  text_data["hour"]
-		st.minute =	   	  text_data["minute"]
+		st.hour =		  int(text_data["hour"])
+		st.minute =	   	  int(text_data["minute"])
+		if text_data["ampm"] == "pm":
+			st.hour += 12
+
 		st.max_minutes =  text_data["max_minutes"]
 		st.validation_code = validation_code
 

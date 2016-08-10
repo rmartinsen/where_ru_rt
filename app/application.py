@@ -12,9 +12,6 @@ def main_form():
 
 @application.route("/RequestText", methods=["POST"])
 def request_text():
-	if request.form["ampm"] == "PM":
-		request.form["hour"] += 12
-
 	st = create_scheduled_text(request.form)
 
 	try:
@@ -43,4 +40,4 @@ def success():
 	return render_template("success.html")
 
 if __name__ == "__main__":
-	application.run()
+	application.run(debug=True)
