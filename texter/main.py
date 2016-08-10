@@ -3,15 +3,15 @@ from datetime import datetime
 import logging
 from twilio import TwilioRestException
 
-from app.TextSender import Texter
-from app.Scraper import get_time_to_arrival
-from app.DB import DBConnection
+from TextSender import Texter
+from Scraper import get_time_to_arrival
+from DB import DBConnection
 
 
 
 if __name__ == '__main__':
 
-	logging.basicConfig(filename='rurt.log', 
+	logging.basicConfig(filename='/home/ec2-user/rt/texter/rurt.log', 
 						level=logging.INFO,
 						format='%(asctime)s %(message)s')
 
