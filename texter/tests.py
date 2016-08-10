@@ -1,4 +1,5 @@
 from Scraper import *
+from TextSender import *
 
 import unittest
 from unittest.mock import MagicMock, patch
@@ -27,17 +28,15 @@ class TestScraper(unittest.TestCase):
 		HTML = get_html(1788, 38)
 		self.assertEqual(HTML, self.HTML)
 
-	# def test_get_html_text_arguments_raise_error(self):
-	# 	try:
-	# 		get_html("str", 38)
-	# 	except TypeError as e :
-	# 		print("type " + type(e).__name__)
-	# 	self.assertRaises(TypeError, get_html("str", 38))
-	# 	self.assertRaises(TypeError, get_html(1788, "str"))
-
 	def test_get_time_from_html(self):
 		minutes_to_arrival = get_time_from_html(self.HTML)
 		self.assertEqual('7', minutes_to_arrival)
+
+class TestTexter(unittest.TestCase):
+	@patch.object(TextSender)
+	def test_msg_sent(self):
+		v
+
 
 
 

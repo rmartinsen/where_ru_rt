@@ -20,4 +20,5 @@ class Texter():
 			)
 			logging.info("Message sent to phone number: " + phone_number)
 		except TwilioRestException as e:
-			print(e)
+			logging.error(e)
+			raise

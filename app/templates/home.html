@@ -1,5 +1,6 @@
 <!doctype html>
 <body>
+	<h3> Where R U RT? </h3>
 	<form action="/RequestText" method="post">
 		<label for="phone_number">Phone number</label>
 		<input type="text" id="phone_number" name="phone_number">
@@ -10,10 +11,21 @@
 		<label for="stop_id">Stop ID</label>
 		<input type="text" id="stop_id" name="stop_id">
 		<br>
-		Send a text at <input type="text" id="hour" name=hour>:<input type="text" id="minute" name=minute> if my bus is at least <input type="text" id="max_minutes" name="max_minutes"> minutes from my stop.
+		Send a text at 
+		<input type="text" id="hour" name=hour placeholder="10" size=2>:
+		<input type="text" id="minute" name=minute placeholder="30" size=2> 
+		<select id="ampm" name="ampm">
+			<option value="am">AM</option>
+			<option value="pm">PM</option>
+		</select>
+		if the next bus is at least 
+		<input type="text" id="max_minutes" name="max_minutes" placeholder=5 size=2> 
+		minutes from my stop.
+		<br>
 		<input type="submit" value="Submit">
 	</form>
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
 </body>
